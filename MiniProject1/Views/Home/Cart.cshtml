@@ -1,0 +1,76 @@
+﻿@model MiniProject1.ViewModel.ShowDataViewModel
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+
+<ul class="nav nav-pills">
+    <li class="nav-item ">
+        <a class="nav-link active rounded-0" data-toggle="pill" href="#menu1">OrderDetail</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link rounded-0" data-toggle="pill" href="#menu2">Transaction</a>
+    </li>
+   
+</ul>
+<button id="btnPayment" class="btn btn-success" onclick="@("window.location.href='" +@Url.Action("Index","home")+"'");" value="NewOrder">NewOrder</button>
+<div class="tab-content">
+    <div class="tab-pane container active p-0" id="menu1">
+        <h3 class="text-uppercase p-2 text-center">ORDER DETAILS</h3>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark text-white">
+                <tr>
+                    <th>@Html.DisplayNameFor(m => Model.OrderDetails.FirstOrDefault().OrderDetailId)</th>
+                    <th>@Html.DisplayNameFor(m => Model.OrderDetails.FirstOrDefault().ProductId)</th>
+                    <th>@Html.DisplayNameFor(m => Model.OrderDetails.FirstOrDefault().ProductPrice)</th>
+                    <th>@Html.DisplayNameFor(m => Model.OrderDetails.FirstOrDefault().Discount)</th>
+                    <th>@Html.DisplayNameFor(m => Model.OrderDetails.FirstOrDefault().Quantity)</th>
+                    <th>@Html.DisplayNameFor(m => Model.OrderDetails.FirstOrDefault().TotalAmount)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var OrderDetail in Model.OrderDetails)
+                {
+                    <tr>
+                        <td>@OrderDetail.OrderDetailId</td>
+                        <td>@OrderDetail.ProductId</td>
+                        <td>@OrderDetail.ProductPrice</td>
+                        <td>@OrderDetail.Discount</td>
+                        <td>@OrderDetail.Quantity</td>
+                        <td>@OrderDetail.TotalAmount</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="tab-pane container fade p-0" id="menu2">
+        <h3 class="text-uppercase p-2 text-center">TRANSACTION DETAILS</h3>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark text-white">
+                <tr>
+                    <th>@Html.DisplayNameFor(m => Model.Transactions.FirstOrDefault().TransactionId)</th>
+                    <th>@Html.DisplayNameFor(m => Model.Transactions.FirstOrDefault().ProductId)</th>
+                    <th>@Html.DisplayNameFor(m => Model.Transactions.FirstOrDefault().Quantity)</th>
+                    <th>@Html.DisplayNameFor(m => Model.Transactions.FirstOrDefault().TransactionDate)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var transaction in Model.Transactions)
+                {
+                    <tr>
+                        <td>@transaction.TransactionId</td>
+                        <td>@transaction.ProductId</td>
+                        <td>@transaction.Quantity</td>
+                        <td>@transaction.TransactionDate</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+        
+    </div>
+   
+</div>
+
